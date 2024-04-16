@@ -1,0 +1,23 @@
+{
+  "name": "cheesus",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": ["packages/*"],
+  "main": "index.js",
+  "author": "William Lee <me@william-lee.com>",
+  "license": "MIT",
+  "scripts": {
+    "build:contracts": "yarn workspace @cheesus/contracts run build",
+    "build:api": "yarn workspace @cheesus/api run build",
+    "build:frontend": "yarn workspace @cheesus/frontend run build",
+
+    "start:api": "yarn workspace @cheesus/api run start:dev",
+    "start:frontend": "yarn workspace @cheesus/frontend run start:dev",
+
+    "test:contracts": "yarn workspace @cheesus/contracts run test",
+    "test:api": "yarn workspace @cheesus/api run test",
+    "test:frontend": "yarn workspace @cheesus/frontend run test",
+
+    "build": "yarn build:contracts && yarn build:api && yarn build:frontend"
+  }
+}

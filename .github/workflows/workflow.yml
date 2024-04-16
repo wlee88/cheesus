@@ -1,0 +1,51 @@
+name: Cheesus CI
+
+on: push
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  install:
+    name: Install
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          always-auth: true
+          node-version-file: '.nvmrc'
+          registry-url: https://registry.npmjs.org
+          cache: 'yarn'
+      - run: yarn --frozen-lockfile
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          always-auth: true
+          node-version-file: '.nvmrc'
+          registry-url: https://registry.npmjs.org
+          cache: 'yarn'
+      - run: yarn build
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    needs: install
+    strategy:
+      matrix:
+        package: [ 'api', 'frontend' ]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          always-auth: true
+          node-version-file: '.nvmrc'
+          registry-url: https://registry.npmjs.org
+          cache: 'yarn'
+      - run: yarn test:${{ matrix.package }}
