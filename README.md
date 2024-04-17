@@ -2,6 +2,7 @@
 
 Welcome! Cheesus is simple CRUD app for showing available cheeses that we have in our physical store. Who knows - maybe we'll accept and extend to payments.
 
+
 ## 📋 Still Todo before we can consider production ready
 - Authentication
 - Set up TypeORM migrations for team friendliness/safety 
@@ -11,13 +12,15 @@ Welcome! Cheesus is simple CRUD app for showing available cheeses that we have i
 
 ## 📁 Project Structure
 
-```mermaid
-graph TD
+## 📦 Packages
+- [@cheesus/api](packages/api/README.md) - The API for the Cheesus project. It is built using the NestJS framework. Simply reads the types from contracts and services appropriately.
+- [@cheesus/frontend](packages/frontend/README.md) - The frontend for the Cheesus project. It is built using Angular.
+- `@cheesus/contracts` - The contracts for the Cheesus project. It is built using TypeScript and Zod for validation. Contains all the shared DTOs and validation for the API and Frontend.
 
-A[cheesus] --> B[cheesus-api]
-
-
-```
+## 🤝 Cross Repo communication
+- `@cheesus/contracts` - contains all the shared DTOs and validation for the API and Frontend
+- ts-rest/core is used as the client library in the frontend and gives us a type safe client between API and client.
+  - It allows us to make direct changes to the api - and gain immediate typesafety/feedback in the frontend.
 
 ## 🏃 How to run the project
 - Clone the project (TODO: thegithuburl when we get this)
@@ -35,7 +38,6 @@ A[cheesus] --> B[cheesus-api]
   - Available at http://localhost:4200
 
 ### docker-compose
-TODO: make working.. struggling with shared contracts atm
 - Ensure you have [Docker](https://docs.docker.com/get-docker/) installed.
 - Run `docker-compose -f docker-compose.yml up`
 - API available at http://localhost:3000
@@ -61,11 +63,11 @@ TODO: make working.. struggling with shared contracts atm
 
 # Troubleshooting
 
-## It's not detecting @cheesus/contract imports
+## It's not detecting @cheesus/contract import changes
 - Ensure the repo is built with `yarn build:contracts` 
 
-## It can't find the DB
+## No Database available when running api locally.
 - Ensure the DB is running and the connection string is correct in the `.env` file
 
 ## 👋 Questions?
-- Questions/Feedback is very welcome. Leave me an issue here (TODO: Github project link ) and I'll get back to you as soon as I can.
+- Leave me a Github issue and i'll answer when i can.
