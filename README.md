@@ -5,7 +5,7 @@ Welcome! Cheesus is simple CRUD app for showing available cheeses that we have i
 ## 📋 Still Todo before we can consider production ready
 - Authentication
 - Metrics capture (Cloudwatch logs could do for now if we deploy via AWS)
-- Actual deployment code (terraform/pulumi/CloudFormation)
+- Actual deployment and code (terraform/pulumi/CloudFormation) - we have a healthcheck we can use to check. 
 - CDN setup/Load Balancing/Route53 domain setup
 
 ## 📁 Project Structure
@@ -13,7 +13,7 @@ Welcome! Cheesus is simple CRUD app for showing available cheeses that we have i
 ```mermaid
 graph TD
 
-A[Cheesus] --> B[cheesus-api]
+A[cheesus] --> B[cheesus-api]
 
 
 ```
@@ -22,11 +22,23 @@ A[Cheesus] --> B[cheesus-api]
 - Clone the project (TODO: thegithuburl when we get this)
 
 ### Locally
-- Ensure you have [nvm](https://github.com/nvm-sh/nvm) installed to ensure you have the correct node version
+- Ensure you have installed:
+  - [nvm](https://github.com/nvm-sh/nvm) to ensure you have the correct node version
+  - [yarn](https://classic.yarnpkg.com/en/docs/install) to manage the packages
+  - [Docker](https://docs.docker.com/get-docker/) to have a DB running.
 
+- Start the DB
+- Start the API
+  - Available at http://localhost:3000
+- Start the Frontend
+  - Available at http://localhost:4200
 
-### With Docker
+### docker-compose
+TODO: make working.. struggling with shared contracts atm
 - Ensure you have [Docker](https://docs.docker.com/get-docker/) installed.
+- Run `docker-compose -f docker-compose.yml up`
+- API available at http://localhost:3000
+- Frontend available at http://localhost:4200
 
 
 ## ⛙ CI/CD

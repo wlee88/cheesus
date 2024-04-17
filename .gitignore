@@ -1,7 +1,8 @@
 # compiled output
-/dist
-/node_modules
-/build
+dist
+packages/**/dist/
+node_modules/
+build/
 
 # Logs
 logs
@@ -54,3 +55,6 @@ pids
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Typescript
+tsconfig.build.tsbuildinfo

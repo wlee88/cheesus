@@ -1,1 +1,1 @@
-export * from './types/cheese';
+export * from './types';

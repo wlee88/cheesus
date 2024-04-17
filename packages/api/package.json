@@ -25,7 +25,7 @@
     "@nestjs/platform-express": "^10.0.0",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1",
-    "@cheesus/contracts": "*"
+    "@cheesus/contracts": "1.0.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",

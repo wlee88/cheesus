@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: .
+      target: 'frontend'
+    ports:
+     - '4200:4200'
+  backend:
+    build:
+      context: .
+      target: 'api'
+    ports:
+      - '3000:3000'
+  database:
+    image: postgres:16-alpine
+    environment:
+      - POSTGRES_USER=master
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=cheesus
+    ports:
+      - '5432:5432'
