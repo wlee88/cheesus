@@ -4,6 +4,7 @@ Welcome! Cheesus is simple CRUD app for showing available cheeses that we have i
 
 ## 📋 Still Todo before we can consider production ready
 - Authentication
+- Set up TypeORM migrations for team friendliness/safety 
 - Metrics capture (Cloudwatch logs could do for now if we deploy via AWS)
 - Actual deployment and code (terraform/pulumi/CloudFormation) - we have a healthcheck we can use to check. 
 - CDN setup/Load Balancing/Route53 domain setup
