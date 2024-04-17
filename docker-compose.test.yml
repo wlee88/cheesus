@@ -1,0 +1,11 @@
+version: '3.8'
+# NOTE: postgres Test port is different at 5433
+services:
+  database:
+    image: postgres:16-alpine
+    environment:
+      - POSTGRES_USER=master
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=cheesus
+    ports:
+      - '5433:5432'

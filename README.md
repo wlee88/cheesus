@@ -48,5 +48,15 @@ TODO: make working.. struggling with shared contracts atm
   - typecheck
   - test
 
+## Port Reservations
+
+### Production
+- DB: 5432
+- API: 3000
+- Frontend: 4200
+
+### Test
+- DB: 5433
+
 ## 👋 Questions?
 - Questions/Feedback is very welcome. Leave me an issue here (TODO: Github project link ) and I'll get back to you as soon as I can.

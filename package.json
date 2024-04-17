@@ -21,6 +21,9 @@
 
     "build": "yarn build:contracts && yarn build:api && yarn build:frontend",
     "docker:frontend": "docker build -t cheesus-web --target frontend .",
-    "docker:api": "docker build -t cheesus-api --target api ."
+    "docker:api": "docker build -t cheesus-api --target api .",
+
+    "start:dependencies": "docker-compose -f docker-compose.test.yml -p cheesus-test up -d",
+    "stop:dependencies": "docker-compose down"
   }
 }
