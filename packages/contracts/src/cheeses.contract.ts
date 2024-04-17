@@ -38,6 +38,7 @@ export const cheesesContract = c.router(
         getCheeses: {
             method: 'GET',
             path: multiplePath,
+            query: z.object({ type: z.string().optional() }),
             responses: {
                 [200]: z.array(CheeseSchema),
                 [500]: ErrorResponseSchema
@@ -58,7 +59,7 @@ export const cheesesContract = c.router(
         updateCheese: {
             method: 'PUT',
             path: `${singularPath}/:id`,
-            body: CheeseSchema.partial(),
+            body: CheeseSchema,
             responses: {
                 [200]: CheeseSchema,
                 [404]: ErrorResponseSchema,

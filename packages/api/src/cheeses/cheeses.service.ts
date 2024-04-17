@@ -24,8 +24,8 @@ export class CheesesService {
         return this.cheeseRepository.findOne({ where: { id } })
     }
     // Needs pagination and filtering to support calculator spec
-    async getAll() {
-        return this.cheeseRepository.find()
+    async getBy(filter: Partial<Cheese>) {
+        return this.cheeseRepository.createQueryBuilder().where(filter).getMany()
     }
 
     async create(cheese: Cheese) {

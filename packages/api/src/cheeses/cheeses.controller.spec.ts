@@ -23,6 +23,8 @@ const validCreateCheeseRequest  = {
   color: 'yellow'
 }
 
+const validUpdateRequest = {...validCreateCheeseRequest, id: 1}
+
 // Zod catches bad requests earlier so these aren't tested here
 // I would have made these integration tests but running out of time
 describe('cheeses.controller', () => {
@@ -48,15 +50,15 @@ describe('cheeses.controller', () => {
   describe('getCheeses', () => {
     it('should return 200', async () => {
       const {sut, cheesesService } = await setup()
-      cheesesService.setup(x => x.getAll()).returns(async () => [])
-      const result = await sut.getCheeses()
+      cheesesService.setup(x => x.getBy(It.isAny())).returns(async () => [])
+      const result = await sut.getCheeses({ headers: {}, query: { type: 'hard' }})
       expect(result.status).toEqual(200)
     })
 
     it('should return 500 on internal error', async () => {
       const {sut, cheesesService } = await setup()
-      cheesesService.setup(x => x.getAll()).throws(new Error('Internal error'))
-      const result = await sut.getCheeses()
+      cheesesService.setup(x => x.getBy(It.isAny())).throws(new Error('Internal error'))
+      const result = await sut.getCheeses({ headers: {}, query: { type: 'soft' }})
       expect(result.status).toEqual(500)
     })
   })
@@ -87,21 +89,21 @@ describe('cheeses.controller', () => {
         const {sut, cheesesService } = await setup()
         const updateResult: UpdateResult = { raw: [], generatedMaps: [], affected: 1 }
         cheesesService.setup(x => x.update(It.isAny(), It.isAny())).returns(async () => updateResult)
-        const result = await sut.updateCheese({ headers: {}, params: { id: '1' }, body: validCreateCheeseRequest})
+        const result = await sut.updateCheese({ headers: {}, params: { id: '1' }, body: validUpdateRequest})
         expect(result.status).toEqual(200)
       })
       it('should return 404 when cheese is not found', async () => {
         const {sut, cheesesService } = await setup()
         const updateResult: UpdateResult = { raw: [], generatedMaps: [], affected: 0 }
         cheesesService.setup(x => x.update(It.isAny(), It.isAny())).returns(async () => updateResult)
-        const result = await sut.updateCheese({ headers: {}, params: { id: '1' }, body: validCreateCheeseRequest})
+        const result = await sut.updateCheese({ headers: {}, params: { id: '1' }, body: validUpdateRequest})
         expect(result.status).toEqual(404)
       })
       it('should return 500 on internal error', async () => {
         const {sut, cheesesService } = await setup()
         const updateResult: UpdateResult = { raw: [], generatedMaps: [], affected: 0 }
         cheesesService.setup(x => x.update(It.isAny(), It.isAny())).throws(new Error('Internal error'))
-        const result = await sut.updateCheese({ headers: {}, params: { id: '1' }, body: validCreateCheeseRequest})
+        const result = await sut.updateCheese({ headers: {}, params: { id: '1' }, body: validUpdateRequest})
         expect(result.status).toEqual(500)
       })
     })

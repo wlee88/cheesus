@@ -38,12 +38,12 @@ export class CheesesController {
     }
 
     @TsRest(c.getCheeses)
-    async getCheeses() {
+    async getCheeses(@TsRestRequest() { query }: RequestShapes['getCheeses']) {
         try {
-            const cheeses = await this.cheesesService.getAll()
+            const cheeses = await this.cheesesService.getBy(query)
             return {
                 status: 200,
-                body: cheeses
+                body: cheeses.length ? cheeses : []
             }
         }
         catch(error) {
