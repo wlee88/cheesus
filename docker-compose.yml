@@ -16,6 +16,7 @@ services:
   database:
     image: postgres:16-alpine
     environment:
+      # currently matching hard coded values. Should be read from universal .env file
       - POSTGRES_USER=master
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=cheesus

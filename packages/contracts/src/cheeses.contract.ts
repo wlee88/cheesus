@@ -3,14 +3,16 @@ import { z } from 'zod'
 import { ErrorResponseSchema } from './error.contract';
 
 const c = initContract()
+
 export const CheeseSchema = z.object({
-    id: z.string().uuid(),
+    id: z.number(),
     name: z.string(),
     pricePerKilo: z.number(),
     description: z.string(),
     imageUrl: z.string().url(),
-    type: z.enum(['fresh', 'aged', 'soft-white-rind', 'semi-soft', 'hard', 'blue', 'flavour-added']),
-    color: z.enum(['orange', 'yellow', 'white', 'blue']),
+    // TODO validation on these
+    type: z.string(),
+    color: z.string(),
 })
 
 export type Cheese = z.infer<typeof CheeseSchema>
@@ -27,6 +29,7 @@ export const cheesesContract = c.router(
                 [200]: CheeseSchema,
                 [404]: null
             },
+            query: z.object({ id: z.number() }),
             summary: 'Get the cheese by id',
         },
         // TODO: support pagination and filtering
@@ -45,6 +48,7 @@ export const cheesesContract = c.router(
             responses: {
                 [201]: CheeseSchema,
                 [400]: ErrorResponseSchema,
+                [500]: ErrorResponseSchema
             },
             summary: 'Create a new cheese',
         },
@@ -54,11 +58,23 @@ export const cheesesContract = c.router(
             body: CheeseSchema.partial(),
             responses: {
                 [200]: CheeseSchema,
-                [400]: ErrorResponseSchema,
-                [404]: null,
+                [404]: ErrorResponseSchema,
+                [500]: null,
             },
             summary: 'Update cheese',
-        }
+        },
+        deleteCheese: {
+            method: 'DELETE',
+            path: singularPath,
+            query: z.object({ id: z.number() }),
+            responses: {
+                [204]: z.undefined(),
+                [404]: ErrorResponseSchema,
+                [500]: ErrorResponseSchema,
+            },
+            body: null,
+            summary: 'Delete a hearing section',
+        },
     },
     {
         strictStatusCodes: true,

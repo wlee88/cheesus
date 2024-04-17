@@ -59,5 +59,13 @@ TODO: make working.. struggling with shared contracts atm
 ### Test
 - DB: 5433
 
+# Troubleshooting
+
+## It's not detecting @cheesus/contract imports
+- Ensure the repo is built with `yarn build:contracts` 
+
+## It can't find the DB
+- Ensure the DB is running and the connection string is correct in the `.env` file
+
 ## 👋 Questions?
 - Questions/Feedback is very welcome. Leave me an issue here (TODO: Github project link ) and I'll get back to you as soon as I can.
