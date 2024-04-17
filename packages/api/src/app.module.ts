@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { CheesesModule } from './cheeses/cheeses.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CheeseEntity } from './entity/cheese-entity';
+import { SeedCheese1713337203582 } from './migrations/1713337203582-SeedCheese';
 
 @Module({
   imports: [
@@ -18,7 +19,8 @@ import { CheeseEntity } from './entity/cheese-entity';
         synchronize: true,
         logging: false,
         entities: [CheeseEntity],
-        migrations: [],
+        migrations: [SeedCheese1713337203582],
+        migrationsRun: true,
         subscribers: [],
       }),
       CheesesModule
