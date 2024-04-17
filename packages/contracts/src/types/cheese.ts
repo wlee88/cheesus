@@ -8,12 +8,3 @@ export interface Cheese {
     type: 'fresh' | 'aged' | 'soft-white-rind' | 'semi-soft' | 'hard' | 'blue' | 'flavour-added'
     color: 'orange' | 'yellow' | 'white' | 'blue'
 }
-
-export interface CreateCheese extends Cheese {}
-export interface UpdateCheese extends Cheese {
-    id: string;
-}
-
-export interface DeleteCheese {
-    id: string;
-}

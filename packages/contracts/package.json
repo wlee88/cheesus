@@ -10,5 +10,9 @@
   },
   "devDependencies": {
     "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "@ts-rest/core": "^3.44.0",
+    "zod": "^3.22.4"
   }
 }
