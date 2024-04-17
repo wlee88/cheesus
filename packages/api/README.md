@@ -26,6 +26,9 @@ $ yarn run start:dev
 $ yarn run start:prod
 ```
 
+- Site is now available at `http://localhost:3000`
+- Swagger docs available at `http://localhost:3000/api`
+
 ## Test
 
 ```bash

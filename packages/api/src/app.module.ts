@@ -14,7 +14,7 @@ import { CheeseEntity } from './entity/cheese-entity';
         username: "master",
         password: "password",
         database: "cheesus",
-        // should not be used in production as this can result in data loss
+        // synchronize: true should not be set in production as this can result in data loss
         synchronize: true,
         logging: false,
         entities: [CheeseEntity],
