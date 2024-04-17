@@ -13,8 +13,9 @@ export const CheeseSchema = z.object({
     // TODO validation on these
     type: z.string(),
     color: z.string(),
-    weightInKilos: z.number(),
 })
+
+export const CreateCheeseRequestSchema = CheeseSchema.omit({ id: true })
 
 export type Cheese = z.infer<typeof CheeseSchema>
 
@@ -39,13 +40,14 @@ export const cheesesContract = c.router(
             path: multiplePath,
             responses: {
                 [200]: z.array(CheeseSchema),
+                [500]: ErrorResponseSchema
             },
             summary: 'Get all cheeses',
         },
         createCheese: {
             method: 'POST',
             path: singularPath,
-            body: CheeseSchema,
+            body: CreateCheeseRequestSchema,
             responses: {
                 [201]: CheeseSchema,
                 [400]: ErrorResponseSchema,
