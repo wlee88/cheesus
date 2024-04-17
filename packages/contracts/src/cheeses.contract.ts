@@ -13,6 +13,7 @@ export const CheeseSchema = z.object({
     // TODO validation on these
     type: z.string(),
     color: z.string(),
+    weightInKilos: z.number(),
 })
 
 export type Cheese = z.infer<typeof CheeseSchema>
@@ -75,6 +76,15 @@ export const cheesesContract = c.router(
             body: null,
             summary: 'Delete a hearing section',
         },
+        report: {
+            method: 'GET',
+            path: `${singularPath}/report`,
+            responses: {
+                [200]: z.array(CheeseSchema),
+                [500]: ErrorResponseSchema
+            },
+
+        }
     },
     {
         strictStatusCodes: true,

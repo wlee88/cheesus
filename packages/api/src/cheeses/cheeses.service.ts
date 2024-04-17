@@ -23,7 +23,7 @@ export class CheesesService {
     async get(id: number) {
         return this.cheeseRepository.findOne({ where: { id } })
     }
-    // Needs pagination and filtering
+    // Needs pagination and filtering to support calculator spec
     async getAll() {
         return this.cheeseRepository.find()
     }
