@@ -9,7 +9,6 @@ export interface Cheese {
     pricePerKilo: number
     description: string
     imageUrl: string
-    type: string
     color: string
 }
 
@@ -24,7 +23,7 @@ export class CheesesService {
         return this.cheeseRepository.findOne({ where: { id } })
     }
     // Needs pagination and filtering to support calculator spec
-    async getBy(filter: Partial<Cheese>) {
+    async getBy(filter?: Partial<Cheese>) {
         return this.cheeseRepository.createQueryBuilder().where(filter).getMany()
     }
 

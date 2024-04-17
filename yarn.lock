@@ -2270,6 +2270,11 @@
   resolved "https://registry.yarnpkg.com/@ts-rest/core/-/core-3.44.0.tgz#e3c0cdf7d47da1702ae7ae790223abc74caa9af3"
   integrity sha512-V2xF8qP3oz+xEPJZ4vJcUMsEWqKGU8OEE3jJCF2BqniOmtbNvx96H7GFFyAa9jSm8vDQwQSt3SI9cWO1YA5sKw==
 
+"@ts-rest/core@^3.44.1":
+  version "3.44.1"
+  resolved "https://registry.yarnpkg.com/@ts-rest/core/-/core-3.44.1.tgz#9ed073126c77ece323fb6728fdc1c7ef6a43b4aa"
+  integrity sha512-3RUyWp+twAJQYfFXIkPoZkc/UXsBcQrFIiiIaZHjoZWT9l+v/uDT7wzP60HJVClAe9MrWgsztX/rRV0s+z72TA==
+
 "@ts-rest/nest@^3.44.0":
   version "3.44.0"
   resolved "https://registry.yarnpkg.com/@ts-rest/nest/-/nest-3.44.0.tgz#ffac074d23fd0472d18b604ca9e7af4ef5d970f6"

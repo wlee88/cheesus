@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { CheesesModule } from './cheeses/cheeses.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CheeseEntity } from './entity/cheese-entity';
@@ -25,8 +23,5 @@ import { SeedCheese1713337203582 } from './migrations/1713337203582-SeedCheese';
       }),
       CheesesModule
   ],
-
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}

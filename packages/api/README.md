@@ -49,3 +49,5 @@ $ yarn run test
 ```
 - IMPORTANT: also add it to `app.module` -> `TypeOrmModule.forRoot` -> `migrations`. This will run on app startup.
 
+## TOFIX
+- It's a pain that api only knows about contract changes after a `yarn build:contracts`. This should be fixed so it reads the direct `ts` file.

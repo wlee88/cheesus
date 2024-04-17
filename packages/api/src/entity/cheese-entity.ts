@@ -19,9 +19,6 @@ export class CheeseEntity {
     imageUrl: string
 
     @Column()
-    type: string
-
-    @Column()
     color: string
 
 }
