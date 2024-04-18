@@ -9,7 +9,6 @@ import { TitleCasePipe } from '@angular/common';
   standalone: true,
   selector: 'home',
   templateUrl: './home.page.html',
-  // align right
   styles: [`.home-menu { text-align: center; }`],
   imports: [CheeseServiceModule, CheeseListComponent, TitleCasePipe]
 })
@@ -22,6 +21,7 @@ export class HomePage implements OnInit {
   constructor(private readonly cheeseService: CheeseService) {}
 
   async ngOnInit(): Promise<void> {
+    // This will do for now - but we really need pagination and also an endpoint for cheese colors
     const fetchedCheeses = await this.cheeseService.getCheeses()
     this.displayedCheeses = this.allCheeses = fetchedCheeses
     this.colors = [...new Set(this.allCheeses.map(cheese => cheese.color))]

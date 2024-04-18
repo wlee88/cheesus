@@ -1,0 +1,26 @@
+<h1>Price Calculator</h1>
+
+<form>
+  <div class="form-group">
+    <label for="desired-weight-in-kilos">Desired Weight In Kilos</label>
+    <input class="form-control" id="desired-weight-in-kilos" [formControl]="priceInput" placeholder="0.00">
+  </div>
+  <div class="form-group">
+    <label for="cheese-name">Cheese</label>
+    <select class="form-control" id="cheese-name" (change)="onCheeseSelected($event)">
+      @for(cheese of cheeses; track cheese.id) {
+        <option value="{{ cheese.id }}">{{ cheese.name }}</option>
+      }
+    </select>
+  </div>
+  <fieldset disabled>
+    <div class="form-group">
+      <label for="price-per-kilo">Price Per Kilo</label>
+      <input type="text" class="form-control" id="price-per-kilo" value="{{selectedCheese?.pricePerKilo}}">
+    </div>
+  </fieldset>
+</form>
+
+<p class="mt-5"><strong>Total Price: {{ (price$ | async) ?? '0' | currency }}</strong></p>
+
+<a [routerLink]="['/']" class="btn btn-primary mt-3">Back to Cheeses</a>
