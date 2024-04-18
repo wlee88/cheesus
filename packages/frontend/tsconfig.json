@@ -23,7 +23,7 @@
       "dom"
     ],
     "paths": {
-      "@cheesus/contracts/*": ["../contracts/src/*"],
+      "@cheesus/contracts": ["../contracts/src"],
     }
   },
   "angularCompilerOptions": {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { initClient } from '@ts-rest/core';
-import { contract } from '@cheesus/contracts/contracts';
+import { contract } from '@cheesus/contracts';
 
 export interface CreateCheeseRequest {
   name: string;
@@ -29,7 +29,7 @@ export class CheeseService {
   async getCheese(id: number) {
     return this.client.cheeses.getCheese({ query: { id } });
   }
-  async getCheeses(filter: { color: string}) {
+  async getCheeses(filter?: { color: string}) {
     return this.client.cheeses.getCheeses({ query: filter });
   }
   async createCheese(cheese: CreateCheeseRequest) {

@@ -16,6 +16,6 @@ export class AppComponent {
   constructor(private readonly cheeseService: CheeseService) {}
 
   ngOnInit() {
-    this.cheeseService.getCheeses({ type: 'Brie' }).then(console.log)
+    this.cheeseService.getCheeses().then(console.log)
   }
 }
