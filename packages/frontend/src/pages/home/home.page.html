@@ -2,5 +2,18 @@
   <div class="col-12">
     <h1>Home</h1>
   </div>
-  <cheese-list [cheeses]="cheeses"></cheese-list>
+  <div class="home-menu">
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Selected Color: {{ selectedColor ? (selectedColor | titlecase) : 'All' }}
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" (click)="onColorFilterClick(undefined)">All</a></li>
+        @for(color of colors; track color) {
+          <li><a class="dropdown-item" href="#" (click)="onColorFilterClick(color)">{{ color | titlecase }}</a></li>
+        }
+      </ul>
+    </div>
+  </div>
+  <cheese-list [cheeses]="displayedCheeses"></cheese-list>
 </div>
