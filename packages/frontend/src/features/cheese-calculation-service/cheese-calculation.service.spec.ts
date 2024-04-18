@@ -1,10 +1,10 @@
-import { PricePerKiloCalculatorService } from './price-per-kilo-calculator.service';
+import { CheeseCalculationService } from './cheese-calculation.service';
 
-describe('PriceCalculatorService', () => {
-  let sut: PricePerKiloCalculatorService
+describe('CheeseCalculationService', () => {
+  let sut: CheeseCalculationService
 
   beforeAll(() => {
-    sut = new PricePerKiloCalculatorService()
+    sut = new CheeseCalculationService()
   })
 
   describe('calculatePrice', () => {

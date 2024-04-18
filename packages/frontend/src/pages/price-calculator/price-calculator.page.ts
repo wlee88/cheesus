@@ -5,11 +5,11 @@ import { CheeseService } from '../../features/cheese-service/cheese.service';
 import { Cheese } from '@cheesus/contracts';
 import { FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
 import {
-  PricePerKiloCalculatorService
-} from '../../features/price-per-kilo-calculator-service/price-per-kilo-calculator.service';
+  CheeseCalculationService
+} from '../../features/cheese-calculation-service/cheese-calculation.service';
 import {
-  PricePerKiloCalculatorServiceModule
-} from '../../features/price-per-kilo-calculator-service/price-per-kilo-calculator-service.module';
+  CheeseCalculationServiceModule
+} from '../../features/cheese-calculation-service/cheese-calculation.service.module';
 import { AsyncPipe, CurrencyPipe } from '@angular/common';
 import { BehaviorSubject, map, Observable, Subject } from 'rxjs';
 
@@ -18,7 +18,7 @@ import { BehaviorSubject, map, Observable, Subject } from 'rxjs';
   standalone: true,
   selector: 'price-calculator',
   templateUrl: './price-calculator.page.html',
-  imports: [RouterModule, CheeseServiceModule, PricePerKiloCalculatorServiceModule, ReactiveFormsModule, AsyncPipe, CurrencyPipe]
+  imports: [RouterModule, CheeseServiceModule, CheeseCalculationServiceModule, ReactiveFormsModule, AsyncPipe, CurrencyPipe]
 })
 export class PriceCalculatorPage implements OnInit{
   cheeses: Cheese[] = []
@@ -26,7 +26,7 @@ export class PriceCalculatorPage implements OnInit{
   priceInput = new FormControl()
   price$: Observable<number> | undefined
 
-  constructor(private readonly cheeseService: CheeseService, private readonly pricePerKiloCalculatorService: PricePerKiloCalculatorService) {
+  constructor(private readonly cheeseService: CheeseService, private readonly pricePerKiloCalculatorService: CheeseCalculationService) {
   }
   async ngOnInit(): Promise<void> {
     // This will do for now - but we really need an endpoint specific for getting cheese names and their prices specifically
