@@ -1,0 +1,9 @@
+<div class="grid gap-3">
+  <div class="card-group">
+    @for(cheese of cheeses(); track cheese.name) {
+    <div class="col-12 col-md-6 col-lg-4">
+      <cheese [cheese]="cheese" [displayShowMoreLink]='true'></cheese>
+    </div>
+    }
+  </div>
+</div>

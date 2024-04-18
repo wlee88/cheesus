@@ -57,9 +57,10 @@ export class CheesesController {
     }
 
     @TsRest(c.getCheese)
-    async getCheese(@TsRestRequest() { query }: RequestShapes['getCheese']) {
+    async getCheese(@TsRestRequest() { params }: RequestShapes['getCheese']) {
         try {
-            const cheese = await this.cheesesService.get(query.id)
+            const cheese = await this.cheesesService.get(params.id)
+            console.log({cheese})
             if (!cheese) {
                 return {
                     status: HttpStatus.NOT_FOUND,
@@ -86,7 +87,7 @@ export class CheesesController {
     @TsRest(c.updateCheese)
     async updateCheese(@TsRestRequest() { params, body }: RequestShapes['updateCheese']) {
         // TODO: validation for params id - as it comes through as string. Zod transform required earlier
-        const id = Number(params.id)
+        const { id } = params
         try {
             const updateResult = await this.cheesesService.update(Number(id), body)
             if (!updateResult.affected) {

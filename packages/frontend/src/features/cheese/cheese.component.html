@@ -1,0 +1,11 @@
+<div class="card">
+  <img src="{{ cheese().imageUrl }}" class="pt-3" alt="image of cheese">
+  <div class="card-body">
+    <h5 class="card-title">{{ cheese().name }}</h5>
+    <p class="card-text"><strong>$/lb</strong>: {{ cheese().pricePerKilo }}</p>
+    <p class="card-text">{{ cheese().description }}</p>
+    @if (displayShowMoreLink()) {
+      <a [routerLink]="['/cheese', cheese().id]" class="btn btn-primary">More information</a>
+    }
+  </div>
+</div>

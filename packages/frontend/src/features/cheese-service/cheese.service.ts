@@ -26,8 +26,8 @@ export class CheeseService {
     });
 
   }
-  async getCheese(id: number) {
-    const result = this.client.cheeses.getCheese({ query: { id } });
+  async getCheese(id: string) {
+    const result = await this.client.cheeses.getCheese({ params: { id } });
     if (result.status === 200) {
       return result.body;
     }

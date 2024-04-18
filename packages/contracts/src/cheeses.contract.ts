@@ -26,12 +26,11 @@ export const cheesesContract = c.router(
     {
         getCheese: {
             method: 'GET',
-            path: singularPath,
+            path: `${singularPath}/:id`,
             responses: {
                 [200]: CheeseSchema,
                 [404]: null
             },
-            query: z.object({ id: z.number() }),
             summary: 'Get the cheese by id',
         },
         // TODO: support pagination and filtering
@@ -79,15 +78,6 @@ export const cheesesContract = c.router(
             body: null,
             summary: 'Delete a hearing section',
         },
-        report: {
-            method: 'GET',
-            path: `${singularPath}/report`,
-            responses: {
-                [200]: z.array(CheeseSchema),
-                [500]: ErrorResponseSchema
-            },
-
-        }
     },
     {
         strictStatusCodes: true,

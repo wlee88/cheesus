@@ -19,8 +19,8 @@ export class CheesesService {
         @InjectRepository(CheeseEntity) private readonly cheeseRepository: Repository<CheeseEntity>
     ) {}
 
-    async get(id: number) {
-        return this.cheeseRepository.findOne({ where: { id } })
+    async get(id: string) {
+        return this.cheeseRepository.findOne({ where: { id: Number(id) } })
     }
     // Needs pagination and filtering to support calculator spec
     async getBy(filter?: Partial<Cheese>) {

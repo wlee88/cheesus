@@ -7,6 +7,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - This project is structured in way that router, leads to a page.
 - A page contains all the smart things
 - Features should be "lightweight" and not contain any dependencies. This ensures complexity is all in once place.
+- Pages folder should match the route structure. For example /cheese should have a cheese folder with a cheese page, and cheese/price-calculator should have a price-calculator folder with a price-calculator page.
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.

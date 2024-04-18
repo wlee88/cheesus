@@ -67,19 +67,19 @@ describe('cheeses.controller', () => {
     it('should return 404 when cheese is not found', async () => {
         const {sut, cheesesService } = await setup()
         cheesesService.setup(x => x.get(It.isAny())).returns(async () => null)
-        const result = await sut.getCheese({ headers: {}, query: { id: 1 }})
+        const result = await sut.getCheese({ headers: {}, params: { id: '1' }})
         expect(result.status).toEqual(404)
     })
     it('should return 200 when cheese is found', async () => {
         const {sut, cheesesService } = await setup()
         cheesesService.setup(x => x.get(It.isAny())).returns(async () => ({ id: 1,...validCreateCheeseRequest}))
-        const result = await sut.getCheese({ headers: {}, query: { id: 1 }})
+        const result = await sut.getCheese({ headers: {}, params: { id: '1' }})
         expect(result.status).toEqual(200)
     })
     it('should return 500 on internal error', async () => {
         const {sut, cheesesService } = await setup()
         cheesesService.setup(x => x.get(It.isAny())).throws(new Error('Internal error'))
-        const result = await sut.getCheese({ headers: {}, query: { id: 1 }})
+        const result = await sut.getCheese({ headers: {}, params: { id: '1' }})
         expect(result.status).toEqual(500)
     })
   })
