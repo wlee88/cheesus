@@ -2,6 +2,11 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.4.
 
+## Component structure
+
+- This project is structured in way that router, leads to a page.
+- A page contains all the smart things
+- Features should be "lightweight" and not contain any dependencies. This ensures complexity is all in once place.
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.

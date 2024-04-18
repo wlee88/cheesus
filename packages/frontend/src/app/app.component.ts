@@ -2,20 +2,30 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CheeseServiceModule } from '../features/cheese-service/cheese-service.module';
 import { CheeseService } from '../features/cheese-service/cheese.service';
+import { Cheese } from '@cheesus/contracts';
+import { CommonModule, JsonPipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CheeseServiceModule],
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    CheeseServiceModule,
+    JsonPipe,
+    FormsModule
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'frontend';
+  cheeses: Cheese[] = []
 
   constructor(private readonly cheeseService: CheeseService) {}
 
-  ngOnInit() {
-    this.cheeseService.getCheeses().then(console.log)
+  async ngOnInit(): Promise<void> {
+    this.cheeses = await this.cheeseService.getCheeses()
+    console.log(this.cheeses)
   }
 }
