@@ -12,7 +12,7 @@ Welcome! Cheesus is simple CRUD app for showing available cheeses that we have i
 
 - Start the DB
 ```
-docker run --name cheesus-db-local -e POSTGRES_USER=master POSTGRES_PASSWORD=password -e POSTGRES_DB=cheesus -p 5432:5432 -d postgres
+docker run --name cheesus-db-local -e POSTGRES_USER=master -e POSTGRES_PASSWORD=password -e POSTGRES_DB=cheesus -p 5432:5432 -d postgres
 ```
 - Start the API - Available at http://localhost:3000
 - Start the Frontend - Available at http://localhost:4200
@@ -61,7 +61,14 @@ docker run --name cheesus-db-local -e POSTGRES_USER=master POSTGRES_PASSWORD=pas
 ## It's not detecting @cheesus/contract import changes
 - Ensure the changes are built with `yarn build:contracts`. (sorry again this is a temporary solution) 
 
-## No Database available when running api locally.
+## Unable to connect to the database.
+```bash
+[Nest] 8824  - 04/20/2024, 2:19:57 PM   ERROR [TypeOrmModule] Unable to connect to the database. Retrying (1)...
+AggregateError
+    at internalConnectMultiple (node:net:1116:18)
+    at afterConnectMultiple (node:net:1683:7)
+
+```
 - Ensure the DB is running and the connection string is correct in the `.env` file
 
 ## 

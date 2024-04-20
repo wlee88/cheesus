@@ -1,4 +1,5 @@
 # NOTE: postgres Test port is different at 5433
+# This should be used for integration tests - but not sure i'll get time to set up
 services:
   database:
     image: postgres:16-alpine

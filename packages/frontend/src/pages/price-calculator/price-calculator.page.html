@@ -16,7 +16,7 @@
   <fieldset disabled>
     <div class="form-group">
       <label for="price-per-kilo">Price Per Kilo</label>
-      <input type="text" class="form-control" id="price-per-kilo" value="{{selectedCheese?.pricePerKilo}}">
+      <input type="text" class="form-control" id="price-per-kilo" value="{{ (selectedCheese$ | async)?.pricePerKilo }}">
     </div>
   </fieldset>
 </form>
