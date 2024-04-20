@@ -1,8 +1,5 @@
-# Multistage Build
-# Global arguments
 ARG GIT_REV_ARG
 
-## Prod-dependencies Definition: Install minimal dependencies for prod
 FROM node:20-alpine as dependencies
 
 RUN mkdir /app

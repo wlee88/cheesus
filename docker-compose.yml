@@ -21,7 +21,7 @@ services:
     container_name: 'cheesus-db'
     image: postgres:16-alpine
     environment:
-      # currently matching hard coded values. Should be read from universal .env file
+      # currently matching .env file in packages/api
       - POSTGRES_USER=master
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=cheesus
