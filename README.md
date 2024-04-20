@@ -1,6 +1,6 @@
 # 🧀 Cheesus
 
-Welcome! Cheesus is simple CRUD app for showing available cheeses that we have in our physical store. Who knows - maybe we'll accept and extend to payments.
+Welcome! Cheesus is simple website and API for showing available cheeses that we have in our physical store. Who knows - maybe we'll accept and extend to payments.
 
 
 ## 🏛️ Architecture
@@ -24,7 +24,20 @@ end
 
 ```
 
-## 🏃 How to run the project
+## 📁 Project Structure
+
+### 📦 Packages
+- [@cheesus/api](packages/api/README.md) - Built using the NestJS framework. Contracts/validation read from `@cheesus/contracts`.
+- [@cheesus/frontend](packages/frontend/README.md) - Built in angular. Uses [ts-rest/core](https://ts-rest.com/)  client package library to communicate with the API - with DTO/Validation from `@cheesus/contracts`.
+- `@cheesus/contracts` - Built using TypeScript and Zod for validation. Contains all the shared DTOs and validation for the API and Frontend.
+
+### 🤝 Frontend/API Communication
+- API utilizes [ts-rest](https://ts-rest.com/) - which reads contracts (i.e DTO) from `@cheesus/contracts` and generates a type safe client for `@cheesus/frontend` while also providing validation and types for `@cheesus/api`.
+  - This allows us to make changes to the API and have immediate feedback in the frontend.
+  - **note**: contract changes require a `yarn build:contracts` currently when there are any changes.
+
+
+## 🏃 Getting Started
 - Clone the project at https://github.com/wlee88/cheesus
 ### Locally
 - Ensure you have installed:
@@ -47,17 +60,6 @@ docker run --name cheesus-db-local -e POSTGRES_USER=master -e POSTGRES_PASSWORD=
 - API available at http://localhost:3000
 - Frontend available at http://localhost:4200
 
-## 📁 Project Structure
-## 📦 Packages
-- [@cheesus/api](packages/api/README.md) - Built using the NestJS framework. Contracts/validation read from `@cheesus/contracts`.
-- [@cheesus/frontend](packages/frontend/README.md) - Built in angular. Uses [ts-rest/core](https://ts-rest.com/)  client package library to communicate with the API - with DTO/Validation from `@cheesus/contracts`.
-- `@cheesus/contracts` - Built using TypeScript and Zod for validation. Contains all the shared DTOs and validation for the API and Frontend.
-
-## 🤝 Cross Repo communication
-- [ts-rest](https://ts-rest.com/) reads contracts from `@cheesus/contracts` and generates a type safe client for `@cheesus/frontend` while also providing validation and types for `@cheesus/api`.
-  - This allows us to make changes to the API and have immediate feedback in the frontend.
-  - **note**: contract changes require a `yarn build:contracts` currently when there are any changes.
-
 ## ⛙ CI/CD
 - Github actions is used for CI
 - There is a [workflow](https://github.com/wlee88/cheesus/actions) that runs on every push to `main` branch for the following steps for api and frontend.
@@ -73,7 +75,7 @@ docker run --name cheesus-db-local -e POSTGRES_USER=master -e POSTGRES_PASSWORD=
 - DB: `5433`
 
 ## 📋 Still Todo before we can consider production ready
-- Validation
+- Validation (frontend price calculator form/more api validation)
 - Integration tests - that run against the API through to DB
 - End to End tests - that run against the frontend through to the API
 - Authentication/admin area and better description field for blog like content that supports markdown and image uploads
