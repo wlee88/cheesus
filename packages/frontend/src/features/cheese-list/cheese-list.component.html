@@ -1,8 +1,8 @@
-<div class="grid gap-3">
+<div class="grid">
   <div class="card-group">
     @for(cheese of cheeses(); track cheese.id) {
     <div class="col-12 col-md-6 col-lg-4">
-      <cheese [cheese]="cheese" [displayShowMoreLink]='true'></cheese>
+      <cheese [cheese]="cheese" [isPreview]='true'></cheese>
     </div>
     }
   </div>

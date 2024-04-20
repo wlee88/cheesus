@@ -1,11 +1,11 @@
-<div class="card">
-  <img src="{{ cheese().imageUrl }}" class="pt-1" alt="image of cheese">
-  <div class="card-body">
-    <h5 class="card-title">{{ cheese().name }}</h5>
-    <p class="card-text"><strong>$/lb</strong>: {{ cheese().pricePerKilo }}</p>
-    <p class="card-text"><strong>Color</strong>: {{ cheese().color }}</p>
-    <p class="card-text">{{ cheese().description }}</p>
-    @if (displayShowMoreLink()) {
+<div class="card cheese-item">
+  <img src="{{ cheese().imageUrl }}" class="cheese-item__image pt-1" alt="image of cheese">
+  <div class="card-body cheese-item__body">
+    <h5 class="card-title cheese-item__title">{{ cheese().name }}</h5>
+    <p class="card-text cheese-item__price"><strong>$/lb</strong>: {{ cheese().pricePerKilo }}</p>
+    <p class="card-text cheese-item__color"><strong>Color</strong>: {{ cheese().color }}</p>
+    <p class="card-text cheese-item__description" [ngClass]="{'cheese-item__description-preview': isPreview() }">{{ cheese().description }}</p>
+    @if (isPreview()) {
       <a [routerLink]="['/cheese', cheese().id]" class="btn btn-primary">More information</a>
     }
   </div>

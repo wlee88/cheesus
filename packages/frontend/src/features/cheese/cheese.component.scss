@@ -1,0 +1,13 @@
+:host {
+  .cheese-item {
+    &__description {
+      min-height: 50px;
+      display: -webkit-box;
+      &-preview {
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+    }
+  }
+}

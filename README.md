@@ -2,29 +2,8 @@
 
 Welcome! Cheesus is simple CRUD app for showing available cheeses that we have in our physical store. Who knows - maybe we'll accept and extend to payments.
 
-
-## 📋 Still Todo before we can consider production ready
-- Authentication
-- Set up TypeORM migrations for team friendliness/safety 
-- Metrics capture (Cloudwatch logs could do for now if we deploy via AWS)
-- Actual deployment and code (terraform/pulumi/CloudFormation) - we have a healthcheck we can use to check. 
-- CDN setup/Load Balancing/Route53 domain setup
-
-## 📁 Project Structure
-
-## 📦 Packages
-- [@cheesus/api](packages/api/README.md) - The API for the Cheesus project. It is built using the NestJS framework. Simply reads the types from contracts and services appropriately.
-- [@cheesus/frontend](packages/frontend/README.md) - The frontend for the Cheesus project. It is built using Angular.
-- `@cheesus/contracts` - The contracts for the Cheesus project. It is built using TypeScript and Zod for validation. Contains all the shared DTOs and validation for the API and Frontend.
-
-## 🤝 Cross Repo communication
-- `@cheesus/contracts` - contains all the shared DTOs and validation for the API and Frontend
-- ts-rest/core is used as the client library in the frontend and gives us a type safe client between API and client.
-  - It allows us to make direct changes to the api - and gain immediate typesafety/feedback in the frontend.
-
 ## 🏃 How to run the project
-- Clone the project (TODO: thegithuburl when we get this)
-
+- Clone the project at https://github.com/wlee88/cheesus
 ### Locally
 - Ensure you have installed:
   - [nvm](https://github.com/nvm-sh/nvm) to ensure you have the correct node version
@@ -43,6 +22,18 @@ Welcome! Cheesus is simple CRUD app for showing available cheeses that we have i
 - API available at http://localhost:3000
 - Frontend available at http://localhost:4200
 
+## 📁 Project Structure
+
+## 📦 Packages
+- [@cheesus/api](packages/api/README.md) - The API for the Cheesus project. It is built using the NestJS framework. Simply reads the types from contracts and services appropriately.
+- [@cheesus/frontend](packages/frontend/README.md) - The frontend for the Cheesus project. It is built using Angular.
+- `@cheesus/contracts` - The contracts for the Cheesus project. It is built using TypeScript and Zod for validation. Contains all the shared DTOs and validation for the API and Frontend.
+
+## 🤝 Cross Repo communication
+- `@cheesus/contracts` - contains all the shared DTOs and validation for the API and Frontend
+- ts-rest/core is used as the client library in the frontend and gives us a type safe client between API and client.
+  - It allows us to make direct changes to the api - and gain immediate typesafety/feedback in the frontend.
+
 
 ## ⛙ CI/CD
 - Github actions is used for CI (not yet CD)
@@ -60,6 +51,14 @@ Welcome! Cheesus is simple CRUD app for showing available cheeses that we have i
 
 ### Test
 - DB: 5433
+
+## 📋 Still Todo before we can consider production ready
+- Authentication
+- Set up TypeORM migrations for team friendliness/safety
+- Metrics capture (Cloudwatch logs could do for now if we deploy via AWS)
+- Actual deployment and code (terraform/pulumi/CloudFormation) - we have a healthcheck we can use to check.
+- CDN setup/Load Balancing/Route53 domain setup
+
 
 # Troubleshooting
 
