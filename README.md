@@ -49,13 +49,12 @@ docker run --name cheesus-db-local -e POSTGRES_USER=master -e POSTGRES_PASSWORD=
 
 ## 📁 Project Structure
 ## 📦 Packages
-- [@cheesus/api](packages/api/README.md) - The API for the Cheesus project. It is built using the NestJS framework. Simply reads the types from contracts and services appropriately.
-- [@cheesus/frontend](packages/frontend/README.md) - The frontend for the Cheesus project. It is built using Angular.
-- `@cheesus/contracts` - The contracts for the Cheesus project. It is built using TypeScript and Zod for validation. Contains all the shared DTOs and validation for the API and Frontend.
+- [@cheesus/api](packages/api/README.md) - Built using the NestJS framework. Contracts/validation read from `@cheesus/contracts`.
+- [@cheesus/frontend](packages/frontend/README.md) - Built in angular. Uses [ts-rest/core](https://ts-rest.com/)  client package library to communicate with the API - with DTO/Validation from `@cheesus/contracts`.
+- `@cheesus/contracts` - Built using TypeScript and Zod for validation. Contains all the shared DTOs and validation for the API and Frontend.
 
 ## 🤝 Cross Repo communication
-- `@cheesus/contracts` - contains all shared contracts and validations for the API and Frontend (defined using [Zod](https://zod.dev/)).
-- [ts-rest](https://ts-rest.com/) reads the contracts and generates a type safe client for the API and Frontend.
+- [ts-rest](https://ts-rest.com/) reads contracts from `@cheesus/contracts` and generates a type safe client for `@cheesus/frontend` while also providing validation and types for `@cheesus/api`.
   - This allows us to make changes to the API and have immediate feedback in the frontend.
   - **note**: contract changes require a `yarn build:contracts` currently when there are any changes.
 
@@ -86,6 +85,7 @@ docker run --name cheesus-db-local -e POSTGRES_USER=master -e POSTGRES_PASSWORD=
 - CDN setup/Load Balancing/Route53 domain setup
 - Design and handling of different image aspect ratios is nonexistent.
 - Pagination for handling alot more cheese.
+- nice to have: use nx for smarter monorepo management and builds  (i.e would only publish and run frontend tests if frontend code changes detected
 
 # 😮 Troubleshooting
 
