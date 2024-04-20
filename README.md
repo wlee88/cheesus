@@ -85,9 +85,11 @@ docker run --name cheesus-db-local -e POSTGRES_USER=master -e POSTGRES_PASSWORD=
 # 😮 Troubleshooting
 
 ## It's not detecting @cheesus/contract import changes
-- Ensure the changes are built with `yarn build:contracts`. (sorry again this is a temporary solution) 
+
+Ensure the changes are built with `yarn build:contracts`. 
 
 ## Unable to connect to the database.
+- The error might look like this:
 ```bash
 [Nest] 8824  - 04/20/2024, 2:19:57 PM   ERROR [TypeOrmModule] Unable to connect to the database. Retrying (1)...
 AggregateError
@@ -99,4 +101,4 @@ AggregateError
 
 
 ## 👋 Questions?
-- Leave me a Github issue and i'll answer when i can.
+ [Submit an issue](https://github.com/wlee88/cheesus/issues) and i'll answer when i can.
