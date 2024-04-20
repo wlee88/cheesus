@@ -13,12 +13,14 @@ graph LR
     C[(DB)]
     D[[Contracts - ZOD]]
 
-subgraph Contracts Enforced Communication Via ts-rest
     D -.-> A
     D -.-> B
-end
+    
+subgraph Contracts Enforced Communication Via ts-rest
+
     A <-->|ts-rest| B
     B <-->|typeorm| C
+end
 
 ```
 
@@ -63,7 +65,7 @@ docker run --name cheesus-db-local -e POSTGRES_USER=master -e POSTGRES_PASSWORD=
   - build
   - test
 
-## Port Reservations
+## 🚢Port Reservations
 ### Production
 - DB: `5432`
 - API: `3000`
@@ -95,7 +97,6 @@ AggregateError
 ```
 - Ensure the DB is running and the connection string is correct in the `.env` file
 
-## 
 
 ## 👋 Questions?
 - Leave me a Github issue and i'll answer when i can.
