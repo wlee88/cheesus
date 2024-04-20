@@ -72,9 +72,12 @@ docker run --name cheesus-db-local -e POSTGRES_USER=master -e POSTGRES_PASSWORD=
 - DB: `5433`
 
 ## 📋 Still Todo before we can consider production ready
+- Integration tests - that run against the API through to DB
+- End to End tests - that run against the frontend through to the API
 - Authentication/admin area
-- Metrics capture (Cloudwatch logs could do for now if we deploy via AWS)
-- Actual deployment and code (terraform/pulumi/CloudFormation) - we have a healthcheck we can use to check.
+- Metrics/logs capture (Cloudwatch logs could do for now if we deploy via AWS)
+- Healthcheck API route/Actual deployment and code (terraform/pulumi/CloudFormation)
+- Github Workflow for deployment
 - CDN setup/Load Balancing/Route53 domain setup
 
 # 😮 Troubleshooting
