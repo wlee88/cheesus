@@ -1,17 +1,21 @@
 # Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.4.
+- [Angular](https://angular.io/) frontend for the Cheesus project.
+## Project structure
+- **src**
+  - **pages** - these directly reflect what is in the router (e.g. `/cheese` would have a CheesePage, and any subroutes would be nested folders). This helps us easily navigate to where a page is defined.
+  - **features** - any resuable components that compose many pages.
 
-## Component structure
-
+### Pages/Features philosophy
+- A page should contain all the data required in one place (i.e make all service/network calls/handlers which react and make serice calls) such that components can be very simple and _only care about presentation only_.
 - This project is structured in way that router, leads to a page.
-- A page contains all the smart things
-- Features should be "lightweight" and not contain any dependencies. This ensures complexity is all in once place.
-- Pages folder should match the route structure. For example /cheese should have a cheese folder with a cheese page, and cheese/price-calculator should have a price-calculator folder with a price-calculator page.
 
 ## CSS Styling
-- We're using bootstrap for core elements to get the project running.
+- We're using [bootstrap](https://getbootstrap.com/) for core elements to get the project running.
 - This project aims to follow [BEM](https://getbem.com/) for CSS styling/maintenance.
+
+## API communucation
+- We're using [ts-rest/core](https://ts-rest.com/) to generate the API client. This interfacts with our shared contracts library (see [🏛️ Architecture](../../README.md#-architecture) for more details)
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
@@ -27,10 +31,6 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
 ## Further help
 
