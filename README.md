@@ -2,6 +2,26 @@
 
 Welcome! Cheesus is simple CRUD app for showing available cheeses that we have in our physical store. Who knows - maybe we'll accept and extend to payments.
 
+
+## 🏛️ Architecture
+
+```mermaid
+graph LR
+
+    A((Frontend - Angular))
+    B{API - NestJS}
+    C[(DB)]
+    D[[Contracts - ZOD]]
+
+subgraph Contracts Enforced Communication Via ts-rest
+    D -.-> A
+    D -.-> B
+end
+    A <-->|ts-rest| B
+    B <-->|typeorm| C
+
+```
+
 ## 🏃 How to run the project
 - Clone the project at https://github.com/wlee88/cheesus
 ### Locally

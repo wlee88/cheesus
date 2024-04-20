@@ -7,10 +7,12 @@ import { Repository, UpdateResult } from 'typeorm';
 import { CheeseEntity } from '../../entities/cheese-entity';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Cheese } from '@cheesus/contracts';
+import { GenericLogger } from '../logger/logger.service';
 
 const setup = async () => {
   const cheesesService = Mock.ofType(CheesesService)
-  const sut = new CheesesController(cheesesService.object)
+  const logger = Mock.ofType(GenericLogger)
+  const sut = new CheesesController(cheesesService.object, logger.object)
   return { sut, cheesesService }
 }
 
