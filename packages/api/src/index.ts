@@ -3,9 +3,14 @@ import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.interface';
 import { ConfigService } from '@nestjs/config';
+import { GenericLogger } from './modules/logger/logger.service';
 
 async function bootstrap() {
-    const app = await NestFactory.create(AppModule);
+    const app = await NestFactory.create(AppModule, {
+        logger: ['error', 'warn'],
+    });
+
+    app.useLogger(new GenericLogger());
 
     const config = new DocumentBuilder()
         .setTitle('Cheesus API')

@@ -7,6 +7,7 @@ import {
 import { cheesesContract, contract } from '@cheesus/contracts';
 import { Controller, HttpStatus } from '@nestjs/common';
 import { CheesesService } from './cheeses.service';
+import { GenericLogger } from '../logger/logger.service';
 
 
 const c = nestControllerContract(cheesesContract)
@@ -16,10 +17,11 @@ type Contract = typeof c
 
 @Controller()
 export class CheesesController {
-    constructor(private readonly cheesesService: CheesesService) {}
+    constructor(private readonly cheesesService: CheesesService, private readonly logger: GenericLogger) {}
 
     @TsRest(c.createCheese)
     async createCheese(@TsRestRequest() { body }: RequestShapes['createCheese']) {
+        this.logger.verbose('Creating cheese', body)
         try {
             const createResult = await this.cheesesService.create(body)
             return {
@@ -28,6 +30,7 @@ export class CheesesController {
             }
 
         } catch (error) {
+            this.logger.error('Error creating cheese', error)
             return {
                 status: 500,
                 body: {
@@ -39,6 +42,7 @@ export class CheesesController {
 
     @TsRest(c.getCheeses)
     async getCheeses(@TsRestRequest() { query }: RequestShapes['getCheeses']) {
+        this.logger.verbose('Getting cheeses', query)
         try {
             const cheeses = await this.cheesesService.getBy(query)
             return {
@@ -47,6 +51,7 @@ export class CheesesController {
             }
         }
         catch(error) {
+            this.logger.error('Error getting cheeses', error)
             return {
                 status: 500,
                 body: {
@@ -58,10 +63,11 @@ export class CheesesController {
 
     @TsRest(c.getCheese)
     async getCheese(@TsRestRequest() { params }: RequestShapes['getCheese']) {
+        this.logger.verbose('Getting cheese', params)
         try {
             const cheese = await this.cheesesService.get(params.id)
-            console.log({cheese})
             if (!cheese) {
+                this.logger.warn('Cheese not found', params)
                 return {
                     status: HttpStatus.NOT_FOUND,
                     body: {
@@ -75,6 +81,7 @@ export class CheesesController {
             }
         }
         catch(error) {
+            this.logger.error('Error getting cheese', error)
             return {
                 status: 500,
                 body: {
@@ -86,11 +93,13 @@ export class CheesesController {
 
     @TsRest(c.updateCheese)
     async updateCheese(@TsRestRequest() { params, body }: RequestShapes['updateCheese']) {
-        // TODO: validation for params id - as it comes through as string. Zod transform required earlier
         const { id } = params
+
+        this.logger.verbose('Updating cheese', { id, body })
         try {
             const updateResult = await this.cheesesService.update(Number(id), body)
             if (!updateResult.affected) {
+                this.logger.warn('Cheese not found', { id, body })
                 return {
                     status: 404,
                     body: {
@@ -103,6 +112,8 @@ export class CheesesController {
                 body: await this.cheesesService.get(id)
             }
         } catch (error) {
+            this.logger.error('Error updating cheese', error)
+
             return {
                 status: 500,
                 body: {
@@ -115,8 +126,10 @@ export class CheesesController {
     @TsRest(c.deleteCheese)
     async deleteCheese(@TsRestRequest() { query }: RequestShapes['deleteCheese']) {
         try {
+            this.logger.verbose('Deleting cheese', query)
             const deleteResult = await this.cheesesService.remove(query.id)
             if (!deleteResult.affected) {
+                this.logger.warn('Cheese not found', query)
                 return {
                     status: 404,
                     body: {
@@ -129,6 +142,7 @@ export class CheesesController {
                 body: undefined
             }
         } catch (error) {
+            this.logger.error('Error deleting cheese', error)
             return {
                 status: 500,
                 body: {
