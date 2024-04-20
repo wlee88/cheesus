@@ -74,13 +74,18 @@ docker run --name cheesus-db-local -e POSTGRES_USER=master -e POSTGRES_PASSWORD=
 - DB: `5433`
 
 ## 📋 Still Todo before we can consider production ready
+- Validation
 - Integration tests - that run against the API through to DB
 - End to End tests - that run against the frontend through to the API
-- Authentication/admin area
+- Authentication/admin area and better description field for blog like content that supports markdown and image uploads
+- A slug-url implementation and better ids for cheese items instead of the crude number id.
+- Better endpoints with index db columns for filtering.
 - Metrics/logs capture (Cloudwatch logs could do for now if we deploy via AWS)
 - Healthcheck API route/Actual deployment and code (terraform/pulumi/CloudFormation)
 - Github Workflow for deployment
 - CDN setup/Load Balancing/Route53 domain setup
+- Design and handling of different image aspect ratios is nonexistent.
+- Pagination for handling alot more cheese.
 
 # 😮 Troubleshooting
 
