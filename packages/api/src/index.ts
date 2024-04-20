@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.interface';
+import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
@@ -16,7 +17,7 @@ async function bootstrap() {
     SwaggerModule.setup('api', app, document);
 
     // TODO: should set via global env
-    app.enableCors(['http://localhost:4200'] as CorsOptions)
+    app.enableCors([new ConfigService().get('ALLOWED_CORS_ORIGIN') || ''] as CorsOptions)
 
     await app.listen(3000);
 }

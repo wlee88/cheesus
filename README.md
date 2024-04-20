@@ -11,10 +11,11 @@ Welcome! Cheesus is simple CRUD app for showing available cheeses that we have i
   - [Docker](https://docs.docker.com/get-docker/) to have a DB running.
 
 - Start the DB
-- Start the API
-  - Available at http://localhost:3000
-- Start the Frontend
-  - Available at http://localhost:4200
+```
+docker run --name cheesus-db-local -e POSTGRES_USER=master POSTGRES_PASSWORD=password -e POSTGRES_DB=cheesus -p 5432:5432 -d postgres
+```
+- Start the API - Available at http://localhost:3000
+- Start the Frontend - Available at http://localhost:4200
 
 ### docker-compose
 - Ensure you have [Docker](https://docs.docker.com/get-docker/) installed.
@@ -23,50 +24,47 @@ Welcome! Cheesus is simple CRUD app for showing available cheeses that we have i
 - Frontend available at http://localhost:4200
 
 ## 📁 Project Structure
-
 ## 📦 Packages
 - [@cheesus/api](packages/api/README.md) - The API for the Cheesus project. It is built using the NestJS framework. Simply reads the types from contracts and services appropriately.
 - [@cheesus/frontend](packages/frontend/README.md) - The frontend for the Cheesus project. It is built using Angular.
 - `@cheesus/contracts` - The contracts for the Cheesus project. It is built using TypeScript and Zod for validation. Contains all the shared DTOs and validation for the API and Frontend.
 
 ## 🤝 Cross Repo communication
-- `@cheesus/contracts` - contains all the shared DTOs and validation for the API and Frontend
-- ts-rest/core is used as the client library in the frontend and gives us a type safe client between API and client.
-  - It allows us to make direct changes to the api - and gain immediate typesafety/feedback in the frontend.
-
+- `@cheesus/contracts` - contains all shared contracts and validations for the API and Frontend (defined using [Zod](https://zod.dev/)).
+- [ts-rest](https://ts-rest.com/) reads the contracts and generates a type safe client for the API and Frontend.
+  - This allows us to make changes to the API and have immediate feedback in the frontend.
+  - It also allows us to make changes to the contracts and have immediate feedback in the API and Frontend.
+  - note: contract changes require a `yarn build:contracts` currently when there are any changes. This is to be fixed so it doesn't require this.
 
 ## ⛙ CI/CD
 - Github actions is used for CI (not yet CD)
-- We have a workflow that runs on every push for the following steps for api, frontend and contracts
+- We have a workflow that runs on every push for the following steps for api and frontend.
   - build
-  - typecheck
   - test
 
 ## Port Reservations
-
 ### Production
-- DB: 5432
-- API: 3000
-- Frontend: 4200
-
+- DB: `5432`
+- API: `3000`
+- Frontend: `4200`
 ### Test
-- DB: 5433
+- DB: `5433`
 
 ## 📋 Still Todo before we can consider production ready
-- Authentication
-- Set up TypeORM migrations for team friendliness/safety
+- Authentication/admin area
 - Metrics capture (Cloudwatch logs could do for now if we deploy via AWS)
 - Actual deployment and code (terraform/pulumi/CloudFormation) - we have a healthcheck we can use to check.
 - CDN setup/Load Balancing/Route53 domain setup
 
-
-# Troubleshooting
+# 😮 Troubleshooting
 
 ## It's not detecting @cheesus/contract import changes
-- Ensure the repo is built with `yarn build:contracts` 
+- Ensure the changes are built with `yarn build:contracts`. (sorry again this is a temporary solution) 
 
 ## No Database available when running api locally.
 - Ensure the DB is running and the connection string is correct in the `.env` file
+
+## 
 
 ## 👋 Questions?
 - Leave me a Github issue and i'll answer when i can.
