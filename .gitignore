@@ -3,7 +3,7 @@ dist
 packages/**/dist/
 node_modules/
 packages/**/node_modules/
-build/
+build
 
 # Logs
 logs

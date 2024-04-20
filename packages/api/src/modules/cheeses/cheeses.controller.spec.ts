@@ -1,10 +1,10 @@
 import { CheesesController } from './cheeses.controller'
 import { CheesesService } from './cheeses.service';
 import { It, Mock } from 'typemoq'
-import { AppModule } from '../app.module';
+import { AppModule } from '../../app.module';
 import { Test } from '@nestjs/testing';
 import { Repository, UpdateResult } from 'typeorm';
-import { CheeseEntity } from '../entity/cheese-entity';
+import { CheeseEntity } from '../../entities/cheese-entity';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Cheese } from '@cheesus/contracts';
 

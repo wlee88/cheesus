@@ -1,4 +1,3 @@
-version: '3.8'
 # NOTE: postgres Test port is different at 5433
 services:
   database:

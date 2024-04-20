@@ -1,19 +1,24 @@
-version: '3.8'
-
 services:
   frontend:
+    container_name: 'cheesus-frontend'
     build:
       context: .
       target: 'frontend'
     ports:
      - '4200:4200'
   backend:
+    container_name: 'cheesus-api'
     build:
       context: .
       target: 'api'
     ports:
       - '3000:3000'
+    env_file:
+      - packages/api/.env
+    environment:
+      - DB_HOST=cheesus-db
   database:
+    container_name: 'cheesus-db'
     image: postgres:16-alpine
     environment:
       # currently matching hard coded values. Should be read from universal .env file
