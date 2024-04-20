@@ -10,12 +10,14 @@ Welcome! Cheesus is simple CRUD app for showing available cheeses that we have i
   - [yarn](https://classic.yarnpkg.com/en/docs/install) to manage the packages
   - [Docker](https://docs.docker.com/get-docker/) to have a DB running.
 
-- Start the DB
+- Run `nvm install` to ensure you have the correct node version.
+- Run `yarn` to install the packages.
+- Start a local DB
 ```
 docker run --name cheesus-db-local -e POSTGRES_USER=master -e POSTGRES_PASSWORD=password -e POSTGRES_DB=cheesus -p 5432:5432 -d postgres
 ```
-- Start the API - Available at http://localhost:3000
-- Start the Frontend - Available at http://localhost:4200
+- Run `yarn start:api` - Available at http://localhost:3000
+- Run `yarn start:frontend` Available at Frontend - Available at http://localhost:4200
 
 ### docker-compose
 - Ensure you have [Docker](https://docs.docker.com/get-docker/) installed.
@@ -33,12 +35,11 @@ docker run --name cheesus-db-local -e POSTGRES_USER=master -e POSTGRES_PASSWORD=
 - `@cheesus/contracts` - contains all shared contracts and validations for the API and Frontend (defined using [Zod](https://zod.dev/)).
 - [ts-rest](https://ts-rest.com/) reads the contracts and generates a type safe client for the API and Frontend.
   - This allows us to make changes to the API and have immediate feedback in the frontend.
-  - It also allows us to make changes to the contracts and have immediate feedback in the API and Frontend.
-  - note: contract changes require a `yarn build:contracts` currently when there are any changes. This is to be fixed so it doesn't require this.
+  - **note**: contract changes require a `yarn build:contracts` currently when there are any changes.
 
 ## ⛙ CI/CD
-- Github actions is used for CI (not yet CD)
-- We have a workflow that runs on every push for the following steps for api and frontend.
+- Github actions is used for CI
+- There is a [workflow](https://github.com/wlee88/cheesus/actions) that runs on every push to `main` branch for the following steps for api and frontend.
   - build
   - test
 

@@ -24,6 +24,10 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     needs: install
+
+    strategy:
+      matrix:
+        package: [ 'api', 'frontend' ]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -32,7 +36,8 @@ jobs:
           node-version-file: '.nvmrc'
           registry-url: https://registry.npmjs.org
           cache: 'yarn'
-      - run: yarn build
+      - run: yarn install --prefer-offline
+      - run: yarn build:${{ matrix.package }}
   test:
     name: Test
     runs-on: ubuntu-latest
@@ -48,4 +53,5 @@ jobs:
           node-version-file: '.nvmrc'
           registry-url: https://registry.npmjs.org
           cache: 'yarn'
+      - run: yarn install --prefer-offline
       - run: yarn test:${{ matrix.package }}
